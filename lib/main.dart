@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:qsmartflutter/monitor.dart';
-import 'package:qsmartflutter/smokingCheatShee.dart';
+import 'package:qsmartflutter/smokingCS.dart';
 
 void main() {
   runApp(MyApp());
@@ -51,9 +51,9 @@ class MenuPage extends StatelessWidget {
         color: Colors.grey,
           child: Column(
             children: <Widget>[
-              MenuButton(title: "IQ130 Monitor", desc: "Monitor and Modify your IQ130 unit", image: "images/img_dir_mon.png"),
+              MenuButton(title: "IQ130 Monitor", desc: "Monitor and Modify your IQ130 unit", image: "images/img_dir_mon.png", route: MonitorPage()),
               MenuButton(title: "Meat Temp Guide", desc: "Not sure what temp to cook to? Check here!", image: "images/img_dir_meat_temp.png"),
-              MenuButton(title: "Meat Smoking Cheat Sheet", desc: "A guide to choosing smoking wood and cooking temps", image: "images/img_dir_smoke_cs.png")
+              MenuButton(title: "Meat Smoking Cheat Sheet", desc: "A guide to choosing smoking wood and cooking temps", image: "images/img_dir_smoke_cs.png", route: SmokingCS())
             ]
           )
         )
@@ -63,11 +63,12 @@ class MenuPage extends StatelessWidget {
 
 
 class MenuButton extends StatelessWidget{
-  MenuButton({Key key, this.title, this.image, this.desc}) : super(key: key);
+  MenuButton({Key key, this.title, this.image, this.desc, this.route}) : super(key: key);
 
   final String image;
   final String title;
   final String desc;
+  final Widget route;
 
 
 
@@ -104,7 +105,7 @@ class MenuButton extends StatelessWidget{
                 ],
               ),
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder:(context) => SmokingCS()));
+            Navigator.push(context, MaterialPageRoute(builder:(context) => route));
           },
         ),
     );
@@ -112,28 +113,3 @@ class MenuButton extends StatelessWidget{
 
 }
 
-
-
-
-//Expanded(
-//flex: 5,
-//child: Column(
-//
-//mainAxisSize: MainAxisSize.min,
-//mainAxisAlignment: MainAxisAlignment.start,
-//children: <Widget>[
-//Flexible(
-//child: Container(
-//color: Colors.red,
-//child: Text(title)
-//)
-//),
-//Flexible(
-//child: Container(
-//color: Colors.blue,
-//child: Text(desc)
-//)
-//)
-//],
-//)
-//)

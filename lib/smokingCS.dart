@@ -11,7 +11,8 @@ class SmokingCS extends StatefulWidget {
 }
 
 class _SmokingState extends State<SmokingCS> {
-  int selectedMeat, selectedFuel = 0;
+  int selectedMeat = 0;
+  int selectedFuel = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +26,12 @@ class _SmokingState extends State<SmokingCS> {
       'Quite gamey and potentially tricky - Venison Roast works well',
       'Quick and easy options - Salmon and shrimp smoke great'];
     final List<String> _meatPreparations = [
-    'Trim excess fat and apply rub and seasoning',
-    'Inject, rub and leave to rest - Skin and trim ribs',
-    'Brine full birds - rub and season',
-    'Season, rub, leave to rest',
-    'Brine/inject, rub and season',
-    'Debone fish, dry brine, rub and season'];
+      'Trim excess fat and apply rub and seasoning',
+      'Inject, rub and leave to rest - Skin and trim ribs',
+      'Brine full birds - rub and season',
+      'Season, rub, leave to rest',
+      'Brine/inject, rub and season',
+      'Debone fish, dry brine, rub and season'];
 
     return Scaffold(
         appBar: AppBar(
@@ -41,28 +42,30 @@ class _SmokingState extends State<SmokingCS> {
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 Container(
-                  width: double.infinity,
-                  child: Center(
-                    child: DropdownButtonHideUnderline(
-                        child: DropdownButton(
-                        hint: Text("Pick a meat"),
-                        value: _meat.elementAt(selectedMeat),
-                        items: _meat.map((String item) =>
-                            DropdownMenuItem(value:item, child:Text(item))).toList(),
-                        onChanged: (value) {
-                          selectedMeat = _meat.indexOf(value); setState(() {});
-                        },
-                      )
+                    width: double.infinity,
+                    child: Center(
+                        child: DropdownButtonHideUnderline(
+                            child: DropdownButton(
+                              hint: Text("Pick a meat"),
+                              value: _meat.elementAt(selectedMeat),
+                              items: _meat.map((String item) =>
+                                  DropdownMenuItem(value:item, child:Text(item))).toList(),
+                              onChanged: (value) {
+                                setState(() {
+                                  selectedMeat = _meat.indexOf(value);
+                                });
+                              },
+                            )
+                        )
                     )
-                  )
                 ),
                 Separator(),
                 Text("Description", style: TextStyle(fontWeight: FontWeight.bold)),
                 Flexible(
-                  child: Container(
-                    margin: EdgeInsets.fromLTRB(2.0, 4.0, 2.0, 10.0),
-                      child: Text(_meatDescriptions.elementAt(selectedMeat), textAlign: TextAlign.center, style: TextStyle(fontSize: 18.0))
-                  )
+                    child: Container(
+                        margin: EdgeInsets.fromLTRB(2.0, 4.0, 2.0, 10.0),
+                        child: Text(_meatDescriptions.elementAt(selectedMeat), textAlign: TextAlign.center, style: TextStyle(fontSize: 18.0))
+                    )
                 ),
                 Text("Preparation", style: TextStyle(fontWeight: FontWeight.bold)),
                 Flexible(
@@ -78,11 +81,13 @@ class _SmokingState extends State<SmokingCS> {
                         child: DropdownButtonHideUnderline(
                             child: DropdownButton(
                               hint: Text("Pick a fuel"),
-                              value: _fuel.elementAt(0),
+                              value: _fuel.elementAt(selectedFuel),
                               items: _fuel.map((String item) =>
                                   DropdownMenuItem(value: item, child: Text(item))).toList(),
                               onChanged: (value) {
-                                selectedFuel = _fuel.indexOf(value); setState(() {});
+                                setState(() {
+                                  selectedFuel = _fuel.indexOf(value);
+                                });
                               },
                             )
                         )
@@ -91,7 +96,7 @@ class _SmokingState extends State<SmokingCS> {
                 Separator(),
                 Flexible(
                     child: Container(
-                      color: Colors.red,
+                        color: Colors.red,
                         margin: EdgeInsets.fromLTRB(2.0, 4.0, 2.0, 10.0),
                         child: Text("Your standard charcoal - cheap, even chunks that burn very consistently for long periods of time and are easy to light. \n\n"
                             "Downsides include - struggles to reach really high temperatures and chemicals used in the creation which can lead to lots of ash.", textAlign: TextAlign.center, style: TextStyle(fontSize: 18.0))
@@ -119,19 +124,3 @@ class Separator extends StatelessWidget{
     );
   }
 }
-
-
-//child: Column(
-//children: <Widget>[
-//Row(
-//mainAxisSize: MainAxisSize.max,
-//children: <Widget>[
-//Expanded(
-//child: DropdownButton<String>(
-//value: 'Beef',
-//items: _meats.toList())
-//),
-//]
-//)
-//],
-//)
