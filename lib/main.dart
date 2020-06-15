@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:qsmartflutter/monitor.dart';
 import 'package:qsmartflutter/smokingCS.dart';
+import 'package:qsmartflutter/tempGuide.dart';
 
 void main() {
   runApp(MyApp());
@@ -52,7 +53,7 @@ class MenuPage extends StatelessWidget {
           child: Column(
             children: <Widget>[
               MenuButton(title: "IQ130 Monitor", desc: "Monitor and Modify your IQ130 unit", image: "images/img_dir_mon.png", route: MonitorPage()),
-              MenuButton(title: "Meat Temp Guide", desc: "Not sure what temp to cook to? Check here!", image: "images/img_dir_meat_temp.png"),
+              MenuButton(title: "Meat Temp Guide", desc: "Not sure what temp to cook to? Check here!", image: "images/img_dir_meat_temp.png", route: TempGuidePage()),
               MenuButton(title: "Meat Smoking Cheat Sheet", desc: "A guide to choosing smoking wood and cooking temps", image: "images/img_dir_smoke_cs.png", route: SmokingCS())
             ]
           )
@@ -112,4 +113,5 @@ class MenuButton extends StatelessWidget{
   }
 
 }
+
 
